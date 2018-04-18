@@ -50,9 +50,12 @@ public class CustomConnectionStrategy extends DefaultConnectionStrategy {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        final ApplicationModule localApplicationModule = applicationModule;
+        final SessionCookie localSessionCookie = sessionCookie;
+        final EnvInfoProvider localEnvInfoProvider = envInfoProvider;
         Subject.doAs(specificSubject, new PrivilegedAction<String>() {
             public String run() {
-                superConnect(applicationModule, sessionCookie, envInfoProvider);
+                superConnect(localApplicationModule, localSessionCookie, localEnvInfoProvider);
                 return null;
             }
         });

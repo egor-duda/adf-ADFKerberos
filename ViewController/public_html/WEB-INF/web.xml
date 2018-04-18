@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-         version="3.0">
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -22,6 +22,12 @@
   <servlet>
     <servlet-name>MapProxyServlet</servlet-name>
     <servlet-class>oracle.adf.view.faces.bi.webapp.MapProxyServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <display-name>Faces source code prevention servlet</display-name>
+    <servlet-name>FacesSourceCodeBlocker</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>0</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
@@ -50,6 +56,10 @@
   <servlet-mapping>
     <servlet-name>resources</servlet-name>
     <url-pattern>/bi/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FacesSourceCodeBlocker</servlet-name>
+    <url-pattern>/*</url-pattern>
   </servlet-mapping>
   <filter>
     <filter-name>trinidad</filter-name>
