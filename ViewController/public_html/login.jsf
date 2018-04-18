@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="login.jsf" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                <af:panelFormLayout id="pfl1">
+                    <af:inputText value="#{bindings.userName.inputValue}" label="#{bindings.userName.hints.label}"
+                                  required="#{bindings.userName.hints.mandatory}"
+                                  columns="#{bindings.userName.hints.displayWidth}"
+                                  maximumLength="#{bindings.userName.hints.precision}"
+                                  shortDesc="#{bindings.userName.hints.tooltip}" id="it1">
+                        <f:validator binding="#{bindings.userName.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.password.inputValue}" label="#{bindings.password.hints.label}"
+                                  required="#{bindings.password.hints.mandatory}"
+                                  columns="#{bindings.password.hints.displayWidth}"
+                                  maximumLength="#{bindings.password.hints.precision}"
+                                  shortDesc="#{bindings.password.hints.tooltip}" id="it2" secret="true">
+                        <f:validator binding="#{bindings.password.validator}"/>
+                    </af:inputText>
+                    <f:facet name="footer">
+                        <af:panelGroupLayout id="pgl2" layout="horizontal" halign="center">
+                            <af:commandButton text="OK" id="cb1" action="#{loginBean.action}" partialSubmit="true">
+                                <af:resetActionListener/>
+                            </af:commandButton>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                </af:panelFormLayout>
+            </af:panelGroupLayout>
+        </af:form>
+    </af:document>
+</f:view>

@@ -8,6 +8,10 @@
                 <af:outputText value="#{bindings.UserName.inputValue}" shortDesc="#{bindings.UserName.hints.tooltip}"
                                id="ot1"/>
             </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{bindings.userName.hints.label}" id="plam2">
+                <af:outputFormatted value="#{bindings.userName.inputValue}" id="of1"/>
+            </af:panelLabelAndMessage>
+            <af:commandButton text="refresh" id="cb1" actionListener="#{bindings.Execute.execute}"/>
         </af:form>
     </af:document>
 </f:view>

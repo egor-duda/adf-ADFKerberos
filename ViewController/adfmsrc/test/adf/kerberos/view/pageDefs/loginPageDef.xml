@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="loginPageDef"
+                Package="test.adf.kerberos.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="root" RangeSize="25" DataControl="UserCredentials" id="UserCredentialsIterator"/>
+    <iterator id="AppModuleModuleDataControlIter" Binds="AppModuleModuleDataControl"
+              DataControl="AppModuleModuleDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="UserCredentialsIterator" id="userName">
+      <AttrNames>
+        <Item Value="userName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="UserCredentialsIterator" id="password">
+      <AttrNames>
+        <Item Value="password"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="checkConnection" InstanceName="data.AppModuleModuleDataControl.dataProvider"
+                  DataControl="AppModuleModuleDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="checkConnection" IsViewObjectMethod="false"
+                  ReturnName="data.AppModuleModuleDataControl.methodResults.checkConnection_AppModuleModuleDataControl_dataProvider_checkConnection_result"/>
+  </bindings>
+</pageDefinition>

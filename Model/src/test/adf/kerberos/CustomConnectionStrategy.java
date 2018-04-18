@@ -2,8 +2,6 @@ package test.adf.kerberos;
 
 import com.sun.security.auth.module.Krb5LoginModule;
 
-import java.io.IOException;
-
 import java.security.PrivilegedAction;
 
 import java.util.HashMap;
@@ -12,13 +10,8 @@ import java.util.Properties;
 
 import javax.security.auth.Subject;
 
-import javax.security.auth.callback.Callback;
-import javax.security.auth.callback.CallbackHandler;
-
-import javax.security.auth.callback.PasswordCallback;
-import javax.security.auth.callback.UnsupportedCallbackException;
-
 import oracle.jbo.ApplicationModule;
+import oracle.jbo.JboException;
 import oracle.jbo.common.ampool.DefaultConnectionStrategy;
 import oracle.jbo.common.ampool.EnvInfoProvider;
 import oracle.jbo.common.ampool.SessionCookie;
@@ -33,6 +26,8 @@ public class CustomConnectionStrategy extends DefaultConnectionStrategy {
     @Override
     public void connect(ApplicationModule applicationModule, SessionCookie sessionCookie,
                         EnvInfoProvider envInfoProvider) {
+        
+        UserCredentials userCredentials = UserCredentials.getCurrentInstance();
         Subject specificSubject = new Subject();
           
         Krb5LoginModule krb5Module = new Krb5LoginModule();
@@ -40,15 +35,15 @@ public class CustomConnectionStrategy extends DefaultConnectionStrategy {
         HashMap<String,String> options = new HashMap<>();
         options.put("doNotPrompt","false");
         options.put("useTicketCache","false");
-        options.put("principal","deo-guest@TLS.PVT");
-        krb5Module.initialize(specificSubject,new KrbCallbackHandler(),sharedState,options);
+        options.put("principal",userCredentials.getUserName() + "@TLS.PVT");
+        krb5Module.initialize(specificSubject,userCredentials,sharedState,options);
         try {
             boolean retLogin = krb5Module.login();
             if(!retLogin)
-                throw new RuntimeException("Kerberos5 adaptor couldn't retrieve credentials (TGT) from the cache"); 
+                throw new JboException("Kerberos5 adaptor couldn't retrieve credentials (TGT) from the cache"); 
             krb5Module.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new JboException (e);
         }
         final ApplicationModule localApplicationModule = applicationModule;
         final SessionCookie localSessionCookie = sessionCookie;
@@ -70,21 +65,4 @@ public class CustomConnectionStrategy extends DefaultConnectionStrategy {
         prop.remove ("password");
         super.connect(applicationModule, sessionCookie, envInfoProvider);
     }
-    
-    
-    private class KrbCallbackHandler implements CallbackHandler {
-        public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
-            String password = "a1a2a3a#";
-            for (int i = 0; i < callbacks.length; i++) {
-                if (callbacks[i] instanceof PasswordCallback) {
-                    PasswordCallback pc = (PasswordCallback)callbacks[i];
-                    System.out.println("set password");
-                    pc.setPassword(password.toCharArray());
-                } else {
-                    throw new UnsupportedCallbackException(callbacks[i], "Unrecognized Callback");
-                }
-            }
-        }
-    }
-    
 }

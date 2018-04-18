@@ -5,6 +5,7 @@
   <executables>
     <variableIterator id="variables"/>
     <iterator Binds="LogonUser" RangeSize="25" DataControl="AppModuleModuleDataControl" id="LogonUserIterator"/>
+    <iterator Binds="root" RangeSize="25" DataControl="UserCredentials" id="UserCredentialsIterator"/>
   </executables>
   <bindings>
     <attributeValues IterBinding="LogonUserIterator" id="UserName">
@@ -12,5 +13,11 @@
         <Item Value="UserName"/>
       </AttrNames>
     </attributeValues>
+    <attributeValues IterBinding="UserCredentialsIterator" id="userName">
+      <AttrNames>
+        <Item Value="userName"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="LogonUserIterator" id="Execute" RequiresUpdateModel="true" Action="iteratorExecute"/>
   </bindings>
 </pageDefinition>

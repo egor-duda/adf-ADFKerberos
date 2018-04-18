@@ -1,2 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2"></adfc-config>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <view id="login">
+    <page>/login.jsf</page>
+  </view>
+  <view id="main">
+    <page>/main.jsf</page>
+  </view>
+  <control-flow-rule id="__1">
+    <from-activity-id>login</from-activity-id>
+    <control-flow-case id="__2">
+      <from-outcome>ok</from-outcome>
+      <to-activity-id>main</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <managed-bean id="__3">
+    <managed-bean-name>loginBean</managed-bean-name>
+    <managed-bean-class>test.adf.kerberos.view.LoginBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+</adfc-config>
