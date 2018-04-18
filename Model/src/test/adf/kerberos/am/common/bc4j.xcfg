@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!---->
+<BC4JConfig xmlns="http://xmlns.oracle.com/bc4j/configuration" version="11.1">
+  <AppModuleConfigBag ApplicationName="test.adf.kerberos.am.AppModuleModule">
+    <AppModuleConfig name="AppModuleModuleLocal" jbo.project="test.adf.kerberos.model.Model"
+                     ApplicationName="test.adf.kerberos.am.AppModuleModule" DeployPlatform="LOCAL" JDBCName="Dummy">
+      <AM-Pooling jbo.ampool.connectionstrategyclass="test.adf.kerberos.CustomConnectionStrategy"/>
+      <Database jbo.TypeMapEntries="OracleApps"/>
+      <Security AppModuleJndiName="test.adf.kerberos.am.AppModuleModule"/>
+    </AppModuleConfig>
+  </AppModuleConfigBag>
+</BC4JConfig>

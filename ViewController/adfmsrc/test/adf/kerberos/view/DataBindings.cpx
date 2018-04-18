@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.9.14" id="DataBindings"
+             SeparateXMLFiles="false" Package="test.adf.kerberos.view" ClientType="Generic">
+  <pageMap>
+    <page path="/main.jsf" usageId="test_adf_kerberos_view_mainPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="test_adf_kerberos_view_mainPageDef" path="test.adf.kerberos.view.pageDefs.mainPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="AppModuleModuleDataControl" Package="test.adf.kerberos.am"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="AppModuleModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="mainPageDef"
+                Package="test.adf.kerberos.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="LogonUser" RangeSize="25" DataControl="AppModuleModuleDataControl" id="LogonUserIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="LogonUserIterator" id="UserName">
+      <AttrNames>
+        <Item Value="UserName"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>
