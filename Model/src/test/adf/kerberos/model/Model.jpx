@@ -4,15 +4,14 @@
 <JboProject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="Model"
-  Version="12.2.1.9.14"
+  Version="11.1.2.64.36"
   SeparateXMLFiles="true"
   PackageName="test.adf.kerberos.model">
   <DesignTime>
-    <Attr Name="_DTExpressionTypeChecking" Value="true"/>
     <Attr Name="_jbo.TypeMapEntries" Value="OracleApps"/>
     <Attr Name="_jprName" Value="../../../../../Model.jpr"/>
     <Attr Name="_NamedConnection" Value="Dummy"/>
-    <Attr Name="_appModuleNames0" Value="test.adf.kerberos.am.AppModuleModule"/>
+    <Attr Name="_appModuleNames0" Value="test.adf.kerberos.am.MainAppModule"/>
   </DesignTime>
   <Containee
     Name="am"

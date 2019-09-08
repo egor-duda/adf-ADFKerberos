@@ -13,6 +13,13 @@
       <to-activity-id>main</to-activity-id>
     </control-flow-case>
   </control-flow-rule>
+  <control-flow-rule id="__4">
+    <from-activity-id>main</from-activity-id>
+    <control-flow-case id="__5">
+      <from-outcome>logout</from-outcome>
+      <to-activity-id>login</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
   <managed-bean id="__3">
     <managed-bean-name>loginBean</managed-bean-name>
     <managed-bean-class>test.adf.kerberos.view.LoginBean</managed-bean-class>

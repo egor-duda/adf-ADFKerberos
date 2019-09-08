@@ -96,6 +96,7 @@
             <hash n="archiveOptions">
                <value n="hasManifest" v="false"/>
             </hash>
+            <value n="contextRoot" v="kerberos"/>
             <value n="enterpriseAppName" v="ADFKerberos_ViewController_webapp"/>
             <hash n="fileGroups">
                <list n="groups">

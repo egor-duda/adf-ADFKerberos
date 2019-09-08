@@ -2,16 +2,20 @@
 <!DOCTYPE html>
 <f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
     <af:document title="main.jsf" id="d1">
+        <af:resource type="javascript">function logout(event) { event.cancel(); window.location = '#{request.contextPath}/logout'; }</af:resource>
         <af:messages id="m1"/>
         <af:form id="f1">
             <af:panelLabelAndMessage label="#{bindings.UserName.hints.label}" id="plam1">
                 <af:outputText value="#{bindings.UserName.inputValue}" shortDesc="#{bindings.UserName.hints.tooltip}"
                                id="ot1"/>
             </af:panelLabelAndMessage>
-            <af:panelLabelAndMessage label="#{bindings.userName.hints.label}" id="plam2">
+            <af:panelLabelAndMessage label="Logon name" id="plam2">
                 <af:outputFormatted value="#{bindings.userName.inputValue}" id="of1"/>
             </af:panelLabelAndMessage>
-            <af:commandButton text="refresh" id="cb1" actionListener="#{bindings.Execute.execute}"/>
+            <af:commandButton text="refresh" id="refresh_btn" actionListener="#{bindings.Execute.execute}"/>
+            <af:commandButton text="logout" id="logout_btn" immediate="true">
+                <af:clientListener type="action" method="logout"/>
+            </af:commandButton>
         </af:form>
     </af:document>
 </f:view>

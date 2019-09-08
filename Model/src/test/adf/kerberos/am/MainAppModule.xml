@@ -3,14 +3,24 @@
 <!---->
 <AppModule
   xmlns="http://xmlns.oracle.com/bc4j"
-  Name="AppModuleModule"
+  Name="MainAppModule"
   ClearCacheOnRollback="true"
   Version="11.1.2.64.36"
-  ComponentClass="test.adf.kerberos.am.AppModuleModuleImpl">
+  ComponentClass="test.adf.kerberos.am.MainAppModuleImpl"
+  ComponentInterface="test.adf.kerberos.am.common.MainAppModule"
+  ClientProxyName="test.adf.kerberos.am.client.MainAppModuleClient">
   <DesignTime>
     <Attr Name="_isCodegen" Value="true"/>
   </DesignTime>
   <ViewUsage
     Name="LogonUser"
     ViewObjectName="test.adf.kerberos.view.LogonUserView"/>
+  <ClientInterface>
+    <Method
+      Name="disconnect"
+      MethodName="disconnect">
+      <Return
+        Type="void"/>
+    </Method>
+  </ClientInterface>
 </AppModule>

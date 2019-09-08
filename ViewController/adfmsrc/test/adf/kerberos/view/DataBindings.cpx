@@ -11,7 +11,7 @@
   </pageDefinitionUsages>
   <dataControlUsages>
     <dc id="UserCredentials" path="test.adf.kerberos.model.UserCredentials"/>
-    <BC4JDataControl id="AppModuleModuleDataControl" Package="test.adf.kerberos.am"
+    <BC4JDataControl id="MainAppModuleDataControl" Package="test.adf.kerberos.am"
                      FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
                      SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
                      SupportsSortCollection="true" Configuration="AppModuleModuleLocal" syncMode="Immediate"

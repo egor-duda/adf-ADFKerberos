@@ -1,5 +1,6 @@
 package test.adf.kerberos.view;
 
+import oracle.jbo.server.AttributeDefImpl;
 import oracle.jbo.server.ViewRowImpl;
 
 // ---------------------------------------------------------------------

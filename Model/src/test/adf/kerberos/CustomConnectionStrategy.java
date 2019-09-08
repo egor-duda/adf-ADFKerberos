@@ -35,7 +35,7 @@ public class CustomConnectionStrategy extends DefaultConnectionStrategy {
         HashMap<String,String> options = new HashMap<>();
         options.put("doNotPrompt","false");
         options.put("useTicketCache","false");
-        options.put("principal",userCredentials.getUserName() + "@TLS.PVT");
+        options.put("principal",userCredentials.getPrincipal());
         krb5Module.initialize(specificSubject,userCredentials,sharedState,options);
         try {
             boolean retLogin = krb5Module.login();
@@ -54,6 +54,7 @@ public class CustomConnectionStrategy extends DefaultConnectionStrategy {
                 return null;
             }
         });
+        userCredentials.setLoggedIn(true);
     }
     
     private void superConnect (ApplicationModule applicationModule, SessionCookie sessionCookie,
@@ -62,7 +63,16 @@ public class CustomConnectionStrategy extends DefaultConnectionStrategy {
         prop.setProperty(AnoServices.AUTHENTICATION_PROPERTY_SERVICES, 
                              "(" + AnoServices.AUTHENTICATION_KERBEROS5 + ")");
         prop.remove ("user");
-        prop.remove ("password");
         super.connect(applicationModule, sessionCookie, envInfoProvider);
+    }
+
+    public void disconnect(ApplicationModule applicationModule, boolean force, SessionCookie sessionCookie) {
+        super.disconnect(applicationModule, force, sessionCookie);
+        // UserCredentials.getCurrentInstance().setLoggedIn(false);
+    }
+
+    public void reconnect(ApplicationModule applicationModule, SessionCookie sessionCookie,
+                          EnvInfoProvider envInfoProvider) {
+        super.reconnect(applicationModule, sessionCookie, envInfoProvider);
     }
 }

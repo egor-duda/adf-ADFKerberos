@@ -29,6 +29,11 @@
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
     <load-on-startup>0</load-on-startup>
   </servlet>
+  <servlet>
+    <display-name>Logout servlet</display-name>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>test.adf.kerberos.view.Logout</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>/faces/*</url-pattern>
@@ -60,6 +65,10 @@
   <servlet-mapping>
     <servlet-name>FacesSourceCodeBlocker</servlet-name>
     <url-pattern>/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/logout</url-pattern>
   </servlet-mapping>
   <filter>
     <filter-name>JpsFilter</filter-name>

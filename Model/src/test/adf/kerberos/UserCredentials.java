@@ -12,14 +12,6 @@ import java.util.HashMap;
 
 import java.util.Properties;
 
-import javax.el.ELContext;
-import javax.el.ExpressionFactory;
-
-import javax.el.ValueExpression;
-
-import javax.faces.application.Application;
-import javax.faces.context.FacesContext;
-
 import javax.security.auth.Subject;
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
@@ -37,6 +29,7 @@ public class UserCredentials implements CallbackHandler{
     
     private static final String url ="jdbc:oracle:thin:@orcl.or.pvt:1521:orcl";
 
+    private boolean loggedIn;
     
     private String userName;
     private String password;
@@ -44,21 +37,17 @@ public class UserCredentials implements CallbackHandler{
     public UserCredentials() {
         super();
     }
-    
-    private static Object resolveExpression(String expression) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        if (facesContext == null) return null;
-        Application app = facesContext.getApplication();
-        ExpressionFactory elFactory = app.getExpressionFactory();
-        ELContext elContext = facesContext.getELContext();
-        ValueExpression valueExp =
-            elFactory.createValueExpression(elContext, expression,
-                                            Object.class);
-        return valueExp.getValue(elContext);
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
     }
-        
+
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+    
     public static UserCredentials getCurrentInstance() {
-        return (UserCredentials)resolveExpression("#{data.UserCredentials.dataProvider}");
+        return (UserCredentials)JSFUtils.resolveExpression("#{data.UserCredentials.dataProvider}");
     }
 
     public void setUserName(String userName) {
@@ -67,6 +56,10 @@ public class UserCredentials implements CallbackHandler{
 
     public String getUserName() {
         return userName;
+    }
+    
+    public String getPrincipal () {
+        return userName.toLowerCase() + "@TLS.PVT";
     }
 
     public String getPassword() {
@@ -100,7 +93,7 @@ public class UserCredentials implements CallbackHandler{
         HashMap<String,String> options = new HashMap<>();
         options.put("doNotPrompt","false");
         options.put("useTicketCache","false");
-        options.put("principal", userName + "@TLS.PVT");
+        options.put("principal", getPrincipal());
         
         krb5Module.initialize(specificSubject,this,sharedState,options);
         boolean retLogin = krb5Module.login();

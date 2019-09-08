@@ -31,10 +31,20 @@
     SQLType="VARCHAR">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="30"/>
-      <Attr Name="_diagramName" Value="UserName"/>
+      <Attr Name="_diagramName" Value="DB username"/>
     </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="test.adf.kerberos.view.LogonUserView.UserName_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
   <AttrArray Name="KeyAttributes">
     <Item Value="UserName"/>
   </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="test.adf.kerberos.model.ModelBundle"/>
+  </ResourceBundle>
 </ViewObject>

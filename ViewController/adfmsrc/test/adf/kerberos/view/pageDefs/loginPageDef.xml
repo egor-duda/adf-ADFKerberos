@@ -5,8 +5,10 @@
   <executables>
     <variableIterator id="variables"/>
     <iterator Binds="root" RangeSize="25" DataControl="UserCredentials" id="UserCredentialsIterator"/>
-    <iterator id="AppModuleModuleDataControlIter" Binds="AppModuleModuleDataControl"
-              DataControl="AppModuleModuleDataControl" RangeSize="25"/>
+    <iterator id="MainAppModuleDataControlIter" Binds="MainAppModuleDataControl" DataControl="MainAppModuleDataControl"
+              RangeSize="25"/>
+    <invokeAction id="doDisconnect" Binds="disconnectOnLoad" Refresh="prepareModel"
+                  RefreshCondition="#{adfFacesContext.initialRender and loginBean.loggedIn}"/>
   </executables>
   <bindings>
     <attributeValues IterBinding="UserCredentialsIterator" id="userName">
@@ -19,9 +21,8 @@
         <Item Value="password"/>
       </AttrNames>
     </attributeValues>
-    <methodAction id="checkConnection" InstanceName="data.AppModuleModuleDataControl.dataProvider"
-                  DataControl="AppModuleModuleDataControl" RequiresUpdateModel="true" Action="invokeMethod"
-                  MethodName="checkConnection" IsViewObjectMethod="false"
-                  ReturnName="data.AppModuleModuleDataControl.methodResults.checkConnection_AppModuleModuleDataControl_dataProvider_checkConnection_result"/>
+    <methodAction id="disconnectOnLoad" InstanceName="data.MainAppModuleDataControl.dataProvider"
+                  DataControl="MainAppModuleDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="disconnect" IsViewObjectMethod="false"/>
   </bindings>
 </pageDefinition>
